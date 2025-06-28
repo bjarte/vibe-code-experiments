@@ -1,10 +1,12 @@
 {
-  "name": "bun-hono-zod-sanity-api",
+  "name": "hono-zod-sanity-api",
   "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "tsx index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "vitest",
     "test:run": "vitest run"
   },

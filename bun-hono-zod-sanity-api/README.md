@@ -1,15 +1,44 @@
-# bun-hono-zod-sanity-api
+# hono-zod-sanity-api
+
+A web API built with Hono, Zod validation, and TypeScript, designed to integrate with Sanity CMS for localized content.
+
+## Installation
 
 To install dependencies:
 
 ```bash
-bun install
+npm install
 ```
 
-To run:
+## Development
+
+To run the development server:
 
 ```bash
-bun run index.ts
+npm run dev
 ```
 
-This project was created using `bun init` in bun v1.2.17. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Testing
+
+To run tests:
+
+```bash
+npm test          # Run tests in watch mode
+npm run test:run  # Run tests once
+```
+
+This project uses Vitest for testing.
+
+## API
+
+- `GET /api/:id` - Returns localized content for the given ID
+
+Example response:
+```json
+{
+  "id": "mykey",
+  "nb-NO": "Min nøkkel",
+  "nn-NO": "Mi nykjel", 
+  "en-GB": "My key"
+}
+```
