@@ -1,0 +1,17 @@
+{
+  "name": "bun-hono-zod-sanity-api",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.7.0",
+    "hono": "^4.8.3",
+    "zod": "^3.25.67"
+  }
+}
