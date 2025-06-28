@@ -1,5 +1,5 @@
 {
-  "name": "hono-zod-sanity-api",
+  "name": "api-with-node-hono-zod-sanity",
   "module": "index.ts",
   "type": "module",
   "private": true,
