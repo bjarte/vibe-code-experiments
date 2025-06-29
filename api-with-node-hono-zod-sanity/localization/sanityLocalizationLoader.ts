@@ -1,4 +1,4 @@
-import type { LocalizationEntry } from '../models/localizationEntry'
+import type { LocalizationEntry } from './localizationEntry'
 import type { LocalizationLoader } from './localizationLoader'
 
 export class SanityLocalizationLoader implements LocalizationLoader {

@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { app } from './index'
-import type { LocalizationEntry } from './models/localizationEntry'
+import type { LocalizationEntry } from './localization/localizationEntry'
 
 describe('API endpoints', () => {
   it('should return localization data for valid id', async () => {

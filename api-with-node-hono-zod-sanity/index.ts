@@ -2,9 +2,9 @@ import { serve } from '@hono/node-server'
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
-import type { LocalizationEntry } from './models/localizationEntry'
-import type { LocalizationLoader } from './repositories/localizationLoader'
-import { SanityLocalizationLoader } from './repositories/sanityLocalizationLoader'
+import type { LocalizationEntry } from './localization/localizationEntry'
+import type { LocalizationLoader } from './localization/localizationLoader'
+import { SanityLocalizationLoader } from './localization/sanityLocalizationLoader'
 
 export const app = new Hono()
 

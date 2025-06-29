@@ -1,4 +1,4 @@
-import type { LocalizationEntry } from '../models/localizationEntry'
+import type { LocalizationEntry } from './localizationEntry'
 
 export interface LocalizationLoader {
   getById(id: string): LocalizationEntry | undefined
