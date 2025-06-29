@@ -19,8 +19,9 @@ export class SanityClient {
   private client = sanityClient
 
   async getById<T extends SanityDocument>(type: string, id: string): Promise<T | null> {
-    
-    const query = `*[_type == $type && _id == $id][0]`
+
+    // const query = `*[_type == $type && _id == $id][0]`
+    const query = `*[_type == 'locale' && _id == $id][0]`
     const params = { type, id }
     
     try {
