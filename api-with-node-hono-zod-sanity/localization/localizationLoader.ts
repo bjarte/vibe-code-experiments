@@ -1,5 +1,5 @@
 import type { LocalizationEntry } from './localizationEntry'
 
 export interface LocalizationLoader {
-  getById(id: string): LocalizationEntry | undefined
+  getById(id: string): Promise<LocalizationEntry | null>
 }

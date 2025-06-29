@@ -2,7 +2,7 @@ import { createClient } from '@sanity/client'
 
 export const sanityClient = createClient({
   projectId: process.env['SANITY_PROJECT_ID'] || '',
-  dataset: process.env.SANITY_DATASET || 'production',
+  dataset: process.env['SANITY_DATASET'] || 'production',
   useCdn: true,
   apiVersion: '2024-01-01',
 })
@@ -19,6 +19,7 @@ export class SanityClient {
   private client = sanityClient
 
   async getById<T extends SanityDocument>(type: string, id: string): Promise<T | null> {
+    
     const query = `*[_type == $type && _id == $id][0]`
     const params = { type, id }
     
@@ -42,5 +43,6 @@ export class SanityClient {
       console.error(`Error fetching all ${type}:`, error)
       throw error
     }
+
   }
 }

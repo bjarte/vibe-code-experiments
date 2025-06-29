@@ -1,13 +1,17 @@
+import { SanityClient } from '../sanity/sanityClient'
 import type { LocalizationEntry } from './localizationEntry'
 import type { LocalizationLoader } from './localizationLoader'
 
 export class SanityLocalizationLoader implements LocalizationLoader {
-  getById(id: string): LocalizationEntry | undefined {
-    return {
-      id,
-      "nb-NO": "Min nøkkel",
-      "nn-NO": "Mi nykjel",
-      "en-GB": "My key"
+  private client = new SanityClient()
+
+  async getById(id: string): Promise<LocalizationEntry | null> {
+    try {
+      const result = await this.client.getById<LocalizationEntry>('localizationEntry', id)
+      return result
+    } catch (error) {
+      console.error(`Error loading localization entry with id ${id}:`, error)
+      return null
     }
   }
 }

@@ -15,12 +15,12 @@ const idSchema = z.object({
   id: z.string()
 })
 
-app.get('/api/:id', zValidator('param', idSchema), (context) => {
+app.get('/api/:id', zValidator('param', idSchema), async (context) => {
 
   const { id } = context.req.valid('param')
 
-  const translations: LocalizationEntry | undefined
-    = localizationLoader.getById(id)
+  const translations: LocalizationEntry | null
+    = await localizationLoader.getById(id)
 
   if (!translations) {
     return context.json({ error: 'ID not found' }, 404)
