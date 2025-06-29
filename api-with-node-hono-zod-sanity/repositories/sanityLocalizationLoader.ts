@@ -1,7 +1,7 @@
 import type { LocalizationEntry } from '../models/localizationEntry'
-import type { LocalizationRepository } from './localizationRepository'
+import type { LocalizationLoader } from './localizationLoader'
 
-export class SanityLocalizationRepository implements LocalizationRepository {
+export class SanityLocalizationLoader implements LocalizationLoader {
   getById(id: string): LocalizationEntry | undefined {
     return {
       id,

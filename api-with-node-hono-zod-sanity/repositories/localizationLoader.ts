@@ -1,5 +1,5 @@
 import type { LocalizationEntry } from '../models/localizationEntry'
 
-export interface LocalizationRepository {
+export interface LocalizationLoader {
   getById(id: string): LocalizationEntry | undefined
 }

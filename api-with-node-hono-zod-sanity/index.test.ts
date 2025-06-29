@@ -26,7 +26,6 @@ describe('API endpoints', () => {
 
     const data = await res.json() as LocalizationEntry
     expect(data.id).toBe('another-key')
-    expect(data.id).toBe('another-key')
     expect(data['nb-NO']).toBe('Min nøkkel')
   })
 
