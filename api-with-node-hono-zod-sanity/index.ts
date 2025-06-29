@@ -3,10 +3,11 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
 import type { LocalizationEntry } from './models/localizationEntry'
-import { DummyLocalizationRepository } from './repositories/localizationRepository'
+import { SanityLocalizationRepository } from './repositories/sanityLocalizationRepository'
 
 export const app = new Hono()
-const localizationRepo = new DummyLocalizationRepository()
+
+const localizationRepo = new SanityLocalizationRepository()
 
 const idSchema = z.object({
   id: z.string()
