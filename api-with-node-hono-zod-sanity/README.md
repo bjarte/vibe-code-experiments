@@ -34,6 +34,7 @@ This project uses Vitest for testing.
 - `GET /api/:id` - Returns localized content for the given ID
 
 Example response:
+
 ```json
 {
   "id": "mykey",
