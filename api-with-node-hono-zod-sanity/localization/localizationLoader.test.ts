@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest'
-import { SanityLocalizationLoader } from './sanityLocalizationLoader'
+import { describe, expect, it } from 'vitest'
+import { LocalizationLoader } from './localizationLoader'
 
-describe('SanityLocalizationLoader', () => {
-  const loader = new SanityLocalizationLoader()
+describe('LocalizationLoader', () => {
+  const loader = new LocalizationLoader()
 
   it('should return localization entry with correct id', () => {
     const result = loader.getById('test-id')

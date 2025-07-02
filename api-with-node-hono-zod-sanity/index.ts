@@ -5,7 +5,7 @@ import { Hono } from 'hono'
 import { z } from 'zod'
 import type { LocalizationEntry } from './localization/localizationEntry'
 import type { LocalizationLoader } from './localization/localizationLoader'
-import { SanityLocalizationLoader } from './localization/sanityLocalizationLoader'
+import { SanityLocalizationLoader } from './localization/localizationLoader'
 import { SanityClient, SanityDocument } from './sanity/sanityClient'
 
 export const app = new Hono()

@@ -43,3 +43,13 @@ Example response:
   "en-GB": "My key"
 }
 ```
+
+## Sanity
+
+This project uses the Sanity definition from headless-cms-api project:
+<https://github.com/statens-pensjonskasse/headless-cms-api>
+
+The type definitions for Sanity are copied from this file:
+<https://github.com/statens-pensjonskasse/headless-cms-api/blob/main/sanity/sanity.types.ts>
+
+When there are changes in the Sanity schema, you need to regenerate sanity.types.ts and copy it to this project.
