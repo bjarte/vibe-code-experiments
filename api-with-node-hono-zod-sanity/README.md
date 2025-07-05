@@ -4,6 +4,13 @@ A web API built with Hono, Zod validation, and TypeScript, designed to integrate
 
 ## Installation
 
+Copy `.env.example` to create a `.env` file in the root directory with the following content:
+
+```plaintext
+SANITY_PROJECT_ID=your_sanity_project_id
+SANITY_DATASET=your_sanity_dataset
+```
+
 To install dependencies:
 
 ```bash
