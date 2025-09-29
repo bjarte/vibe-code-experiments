@@ -40,9 +40,9 @@ app.get('/api/:id', zValidator('param', idSchema), async (context) => {
 
 })
 
+console.log(`Server is running on http://localhost:3001/api`)
+
 serve({
   fetch: app.fetch,
   port: 3001
-}).then(() => {
-  console.log(`Server is running on http://localhost:3001/api`)
 })
