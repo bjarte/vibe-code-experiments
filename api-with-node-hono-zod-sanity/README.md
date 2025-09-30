@@ -22,7 +22,7 @@ npm install
 To run the development server:
 
 ```bash
-npm run dev
+npm run dev       # Run api with watch
 ```
 
 ## Testing
@@ -60,3 +60,9 @@ The type definitions for Sanity are copied from this file:
 <https://github.com/statens-pensjonskasse/headless-cms-api/blob/main/sanity/sanity.types.ts>
 
 When there are changes in the Sanity schema, you need to regenerate sanity.types.ts and copy it to this project.
+
+Sanity Studio: Create and edit translations, "locales":
+<https://www.sanity.io/@oNjtJStyK/studio/vqb0f7zjothq3253d8o7hk2u/production/structure>
+
+Sanity Vision: Try GROQ queries directly:
+<https://www.sanity.io/@oNjtJStyK/studio/vqb0f7zjothq3253d8o7hk2u/production/vision>
