@@ -6,26 +6,29 @@ import type { Locale } from '../sanity.types'
 describe('SanityClient', () => {
   const client = new SanityClient()
 
-  it('should fetch locale entry with id "utbetalingermfe"', async () => {
-    console.log('Starting test: fetching locale entry with id "pensjon"')
-    const result = await client.getById<Locale>('locale', 'pensjon')
+  const localeId: string = 'utbetalingermfe'
+  const localeType: string = 'locale'
+
+  it(`should fetch locale entry with id "${localeId}"`, async () => {
+    console.log(`Starting test: fetching ${localeType} entry with id "${localeId}"`)
+    const result = await client.getById<Locale>(localeType, localeId)
     console.log('Result:', result)
 
     expect(result).toBeDefined()
 
     if (result) {
-      console.log('Result ID:', result._id)
+      console.log('Result ID:', result.id?.current)
       console.log('Result Type:', result._type)
-      expect(result._id).toBe('utbetalingermfe')
-      expect(result._type).toBe('locale')
+      expect(result.id?.current).toBe(localeId)
+      expect(result._type).toBe(localeType)
       expect(result._createdAt).toBeDefined()
       expect(result._updatedAt).toBeDefined()
     }
   })
 
   it('should return null for non-existent entry', async () => {
-    console.log('Starting test: fetching non-existent entry')
-    const result = await client.getById<Locale>('locale', 'non-existent-id')
+    console.log(`Starting test: fetching non-existent ${localeType} entry`)
+    const result = await client.getById<Locale>(localeType, 'non-existent-id')
     console.log('Result for non-existent entry:', result)
 
     expect(result).toBeNull()

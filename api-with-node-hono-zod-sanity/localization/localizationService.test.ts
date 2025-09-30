@@ -6,39 +6,20 @@ import type { LocalizationModel } from './localizationModel'
 
 describe('LocalizationService', () => {
   const mockSanityClient = {
-    getById: vi.fn()
+    getById: vi.fn(),
   } as unknown as SanityClient
 
   const localizationService = new LocalizationService(mockSanityClient)
 
-  it('should return localization entry with correct id', async () => {
+  it('should return locale entry with correct id', async () => {
     const mockLocale: Locale = {
       _id: 'test-id',
       _type: 'locale',
       _createdAt: '2023-01-01',
       _updatedAt: '2023-01-01',
-      _rev: 'rev1',
+      _rev: 'any-rev',
       id: { _type: 'slug', current: 'test-id' },
-      translations: [
-        {
-          _key: 'nb-NO',
-          _type: 'translationKey',
-          key: 'nb-NO',
-          value: { _type: 'i18n.block', nb: [{ _type: 'block', _key: 'key1', children: [{ _type: 'span', _key: 'span1', text: 'Min nøkkel' }] }] }
-        },
-        {
-          _key: 'nn-NO',
-          _type: 'translationKey',
-          key: 'nn-NO',
-          value: { _type: 'i18n.block', nn: [{ _type: 'block', _key: 'key2', children: [{ _type: 'span', _key: 'span2', text: 'Mi nykjel' }] }] }
-        },
-        {
-          _key: 'en-GB',
-          _type: 'translationKey',
-          key: 'en-GB',
-          value: { _type: 'i18n.block', en: [{ _type: 'block', _key: 'key3', children: [{ _type: 'span', _key: 'span3', text: 'My key' }] }] }
-        }
-      ]
+      translations: [],
     }
 
     vi.mocked(mockSanityClient.getById).mockResolvedValue(mockLocale)
@@ -55,28 +36,39 @@ describe('LocalizationService', () => {
       _type: 'locale',
       _createdAt: '2023-01-01',
       _updatedAt: '2023-01-01',
-      _rev: 'rev1',
+      _rev: 'any-rev',
       id: { _type: 'slug', current: 'any-id' },
       translations: [
         {
-          _key: 'nb-NO',
+          _key: 'any-key',
           _type: 'translationKey',
-          key: 'nb-NO',
-          value: { _type: 'i18n.block', nb: [{ _type: 'block', _key: 'key1', children: [{ _type: 'span', _key: 'span1', text: 'Min nøkkel' }] }] }
+          key: 'nb',
+          value: {
+            _type: 'i18n.block',
+            nb: [
+              {
+                _type: 'block',
+                _key: 'key1',
+                children: [{ _type: 'span', _key: 'span1', text: 'Min nøkkel' }],
+              },
+            ],
+            nn: [
+              {
+                _type: 'block',
+                _key: 'any-key',
+                children: [{ _type: 'span', _key: 'span2', text: 'Mi nykjel' }],
+              },
+            ],
+            en: [
+              {
+                _type: 'block',
+                _key: 'any-key',
+                children: [{ _type: 'span', _key: 'span3', text: 'My key' }],
+              },
+            ],
+          },
         },
-        {
-          _key: 'nn-NO',
-          _type: 'translationKey',
-          key: 'nn-NO',
-          value: { _type: 'i18n.block', nn: [{ _type: 'block', _key: 'key2', children: [{ _type: 'span', _key: 'span2', text: 'Mi nykjel' }] }] }
-        },
-        {
-          _key: 'en-GB',
-          _type: 'translationKey',
-          key: 'en-GB',
-          value: { _type: 'i18n.block', en: [{ _type: 'block', _key: 'key3', children: [{ _type: 'span', _key: 'span3', text: 'My key' }] }] }
-        }
-      ]
+      ],
     }
 
     vi.mocked(mockSanityClient.getById).mockResolvedValue(mockLocale)
@@ -85,13 +77,13 @@ describe('LocalizationService', () => {
 
     expect(result).toEqual({
       id: 'any-id',
-      'nb-NO': '<p>Min nøkkel</p>',
-      'nn-NO': '<p>Mi nykjel</p>',
-      'en-GB': '<p>My key</p>'
+      'nb-NO': 'Min nøkkel',
+      'nn-NO': 'Mi nykjel',
+      'en-GB': 'My key',
     })
   })
 
-  it('should return null when locale not found', async () => {
+  it('should return null when locale entry not found', async () => {
     vi.mocked(mockSanityClient.getById).mockResolvedValue(null)
 
     const result = await localizationService.getById('nonexistent-id')

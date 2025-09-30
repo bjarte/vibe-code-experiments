@@ -19,15 +19,14 @@ export class SanityClient {
   private client = sanityClient
 
   async getById<T extends SanityDocument>(type: string, id: string): Promise<T | null> {
-
-    const query = `*[_type == $type && _id == $id][0]`
+    const query = `*[_type == $type && id.current == $id][0]`
     const params = { type, id }
-    
+
     try {
       const result = await this.client.fetch<T | null>(query, params)
       return result
     } catch (error) {
-      console.error(`Error fetching ${type} with id ${id}:`, error)
+      console.error(`SanityClient.getAll: Error fetching ${type} with id ${id}:`, error)
       throw error
     }
   }
@@ -35,14 +34,13 @@ export class SanityClient {
   async getAll<T extends SanityDocument>(type: string): Promise<T[]> {
     const query = `*[_type == $type]`
     const params = { type }
-    
+
     try {
       const result = await this.client.fetch<T[]>(query, params)
       return result
     } catch (error) {
-      console.error(`Error fetching all ${type}:`, error)
+      console.error(`SanityClient.getAll: Error fetching all ${type}:`, error)
       throw error
     }
-
   }
 }
