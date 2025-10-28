@@ -1,5 +1,4 @@
-import 'dotenv/config'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'bun:test'
 import { SanityClient } from './sanityClient'
 import type { Locale } from '../sanity.types'
 
@@ -12,7 +11,7 @@ describe('SanityClient', () => {
   it(`should fetch locale entry with id "${localeId}"`, async () => {
     console.log(`Starting test: fetching ${localeType} entry with id "${localeId}"`)
     const result = await client.getById<Locale>(localeType, localeId)
-    console.log('Result:', result)
+    // console.log('Result:', result)
 
     expect(result).toBeDefined()
 
@@ -20,7 +19,7 @@ describe('SanityClient', () => {
       console.log('Result ID:', result.id?.current)
       console.log('Result Type:', result._type)
       expect(result.id?.current).toBe(localeId)
-      expect(result._type).toBe(localeType)
+      expect(result._type).toBe('locale')
       expect(result._createdAt).toBeDefined()
       expect(result._updatedAt).toBeDefined()
     }

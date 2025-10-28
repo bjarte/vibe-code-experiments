@@ -1,20 +1,20 @@
----
+# Context for Codex
 
-This project uses Node.js with npm for package management.
+This project uses Bun for package management and runtime.
 
 ## Development Commands
 
-- Use `npm run dev` to start the development server
-- Use `npm test` to run tests in watch mode with Vitest
-- Use `npm run test:run` to run tests once
-- Use `npm install` to install dependencies
+- Use `bun run dev` to start the development server
+- Use `bun test` to run tests in watch mode with Bun's test runner
+- Use `bun run test:run` to run tests once
+- Use `bun install` to install dependencies
 
 ## Testing
 
-Use Vitest for testing:
+Use Bun's built-in test runner:
 
 ```ts
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'bun:test'
 
 describe('example test', () => {
   it('should work', () => {
@@ -23,9 +23,9 @@ describe('example test', () => {
 })
 ```
 
-- Vitest is configured; co-locate tests with `*.test.ts` suffix.
-- Run interactively: `npm test`.
-- Single pass CI run: `npm run test:run`.
+- Bun test runner is configured; co-locate tests with `*.test.ts` suffix.
+- Run interactively: `bun test`.
+- Single pass CI run: `bun run test:run`.
 
 ## Architecture
 
@@ -38,12 +38,12 @@ This API follows a repository pattern:
 
 ## Deployment
 
-This project is designed to be deployable to Azure Functions or other Node.js serverless platforms.
+This project is designed to be deployable as a container to a cloud environment like GCP.
 
 ## Project Snapshot
 
-- **Stack**: Node.js + TypeScript, Hono HTTP framework, Zod for input validation, Sanity CMS as content backend.
-- **Entry**: `index.ts` defines the Hono app and bootstraps the server with `@hono/node-server`.
+- **Stack**: Bun + TypeScript, Hono HTTP framework, Zod for input validation, Sanity CMS as content backend.
+- **Entry**: `index.ts` defines the Hono app and bootstraps the server with `Bun.serve()`.
 - **Domain**: Localization strings fetched from Sanity and exposed via `/api/:id`.
 
 ## Key Modules
@@ -54,24 +54,23 @@ This project is designed to be deployable to Azure Functions or other Node.js se
 
 ## Environment & Config
 
-- Required vars: `SANITY_PROJECT_ID`, `SANITY_DATASET` (loaded via `dotenv/config`).
+- Required vars: `SANITY_PROJECT_ID`, `SANITY_DATASET` (Bun automatically loads `.env` files).
 - Default dataset falls back to `production`; missing IDs return empty Sanity responses, so verify env first.
 - Toggle `useCdn` in `sanityClient` when debugging stale data.
 
 ## Dev Workflow
 
-- Install deps: `npm install`.
-- Start server: `npm run dev` (uses Hono with the Vite-style dev server).
-- Direct run: `node index.ts` or `tsx watch index.ts` depending on context.
+- Install deps: `bun install`.
+- Start server: `bun run dev` (uses Bun's watch mode with hot reload).
+- Direct run: `bun index.ts` or `bun --watch index.ts` for watch mode.
 
 ## Debug Tips
 
 - Add temporary `console.dir({ query, params, result })` inside `SanityClient` methods to inspect GROQ calls.
 - Use Sanity Vision to reproduce queries before suspecting API issues.
-- Ensure `serve` usage leverages the callback signature (`serve(options, onListen)`)—no promises returned.
+- Bun's native server runs synchronously with `Bun.serve()`.
 
 ## Deployment Notes
 
 - Designed for serverless targets (e.g., Azure Functions); keep side effects within request handlers.
 - Keep all new code TypeScript strict-friendly; prefer explicit types on public functions.
-

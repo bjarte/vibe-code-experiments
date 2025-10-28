@@ -1,6 +1,4 @@
-import { serve } from '@hono/node-server'
 import { zValidator } from '@hono/zod-validator'
-import 'dotenv/config'
 import { Hono } from 'hono'
 import { z } from 'zod'
 import type { LocalizationModel } from './localization/localizationModel'
@@ -33,14 +31,11 @@ app.get('/api/:id', zValidator('param', idSchema), async (context) => {
   return context.json(translations)
 })
 
-serve(
-  {
-    fetch: app.fetch,
-    port: 3001,
-  },
-  (info) => {
-    console.log(
-      `Server is running. Example query: http://localhost:${info.port}/api/utbetalingermfe`
-    )
-  }
-)
+const port = 3001
+
+Bun.serve({
+  fetch: app.fetch,
+  port,
+})
+
+console.log(`Server is running. Example query: http://localhost:${port}/api/utbetalingermfe`)

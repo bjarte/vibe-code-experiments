@@ -1,8 +1,7 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'bun:test'
 import { LocalizationService } from './localizationService'
 import { SanityClient } from '../sanity/sanityClient'
 import type { Locale } from '../sanity.types'
-import type { LocalizationModel } from './localizationModel'
 
 describe('LocalizationService', () => {
   const mockSanityClient = {
@@ -22,7 +21,7 @@ describe('LocalizationService', () => {
       translations: [],
     }
 
-    vi.mocked(mockSanityClient.getById).mockResolvedValue(mockLocale)
+    ;(mockSanityClient.getById as any).mockResolvedValue(mockLocale)
 
     var result = await localizationService.getById('test-id')
 
@@ -71,7 +70,7 @@ describe('LocalizationService', () => {
       ],
     }
 
-    vi.mocked(mockSanityClient.getById).mockResolvedValue(mockLocale)
+    ;(mockSanityClient.getById as any).mockResolvedValue(mockLocale)
 
     const result = await localizationService.getById('any-id')
 
@@ -84,7 +83,7 @@ describe('LocalizationService', () => {
   })
 
   it('should return null when locale entry not found', async () => {
-    vi.mocked(mockSanityClient.getById).mockResolvedValue(null)
+    ;(mockSanityClient.getById as any).mockResolvedValue(null)
 
     const result = await localizationService.getById('nonexistent-id')
 
