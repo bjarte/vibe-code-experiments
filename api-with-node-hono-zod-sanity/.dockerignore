@@ -1,0 +1,12 @@
+node_modules
+Dockerfile*
+.dockerignore
+.git
+.gitignore
+README.md
+.vscode
+.claude
+.env*
+.editorconfig
+CLAUDE.md
+CODEX.md

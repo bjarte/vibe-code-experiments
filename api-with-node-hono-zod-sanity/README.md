@@ -66,3 +66,10 @@ Sanity Studio: Create and edit translations, "locales":
 
 Sanity Vision: Try GROQ queries directly:
 <https://www.sanity.io/@oNjtJStyK/studio/vqb0f7zjothq3253d8o7hk2u/production/vision>
+
+## Container, Podman
+
+```bash
+cd api-with-node-hono-zod-sanity
+podman build --pull -t bun-hono-zod-sanity-api .
+```
