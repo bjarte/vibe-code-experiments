@@ -14,7 +14,7 @@ SANITY_DATASET=your_sanity_dataset
 To install dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
 ## Development
@@ -22,7 +22,7 @@ npm install
 To run the development server:
 
 ```bash
-npm run dev       # Run api with watch
+bun run dev       # Run api with watch
 ```
 
 ## Testing
@@ -30,11 +30,11 @@ npm run dev       # Run api with watch
 To run tests:
 
 ```bash
-npm test          # Run tests in watch mode
-npm run test:run  # Run tests once
+bun test          # Run tests in watch mode
+bun run test:run  # Run tests once
 ```
 
-This project uses Vitest for testing.
+This project uses Bun test for testing.
 
 ## API
 
@@ -74,14 +74,15 @@ Build container
 ```bash
 podman build --secret id=env,src=.env --pull -t my-bun-demo .
 # -t Tag
-# --secret Read from .env to run tests
+# --secret Read env vars from .env to run tests
 ```
 
 Run container
 
 ```bash
+# Apple env vars with parameters
 podman run -e SANITY_PROJECT_ID=xyz -e SANITY_DATASET=production -d -p 3000:3000 my-bun-demo
-# Alternatively
+# Alternatively read env vars from .env
 podman run --env-file .env -d -p 3000:3000 my-bun-demo
 # -e Environment variables
 # -d Detached (open Podman or run `podman logs <container-id>` to see logs)
