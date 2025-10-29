@@ -19,7 +19,8 @@
       "Bash(npm run test:*)",
       "Bash(bun run test:*)",
       "Bash(git add:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }
