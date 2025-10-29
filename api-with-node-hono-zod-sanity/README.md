@@ -69,7 +69,21 @@ Sanity Vision: Try GROQ queries directly:
 
 ## Container, Podman
 
+Build container
+
 ```bash
-cd api-with-node-hono-zod-sanity
-podman build --pull -t bun-hono-zod-sanity-api .
+podman build --secret id=env,src=.env --pull -t my-bun-demo .
+# -t Tag
+# --secret Read from .env to run tests
+```
+
+Run container
+
+```bash
+podman run -e SANITY_PROJECT_ID=xyz -e SANITY_DATASET=production -d -p 3000:3000 my-bun-demo
+# Alternatively
+podman run --env-file .env -d -p 3000:3000 my-bun-demo
+# -e Environment variables
+# -d Detached (open Podman or run `podman logs <container-id>` to see logs)
+# -p Port numbers
 ```

@@ -31,7 +31,7 @@ app.get('/api/:id', zValidator('param', idSchema), async (context) => {
   return context.json(translations)
 })
 
-const port = 3001
+const port = 3000
 
 Bun.serve({
   fetch: app.fetch,
