@@ -72,6 +72,9 @@ Sanity Vision: Try GROQ queries directly:
 Build container
 
 ```bash
+# Simple build, without tests
+podman build --pull -t my-bun-demo .
+# Build and test, requires env variables
 podman build --secret id=env,src=.env --pull -t my-bun-demo .
 # -t Tag
 # --secret Read env vars from .env to run tests
@@ -80,7 +83,7 @@ podman build --secret id=env,src=.env --pull -t my-bun-demo .
 Run container
 
 ```bash
-# Apple env vars with parameters
+# Apply env vars with parameters
 podman run -e SANITY_PROJECT_ID=xyz -e SANITY_DATASET=production -d -p 3000:3000 my-bun-demo
 # Alternatively read env vars from .env
 podman run --env-file .env -d -p 3000:3000 my-bun-demo

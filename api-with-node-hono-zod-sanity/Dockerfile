@@ -25,8 +25,12 @@ COPY . .
 ENV NODE_ENV=production
 ENV SANITY_DATASET=production
 RUN --mount=type=secret,id=env \
-    export $(grep -v '^#' /run/secrets/env | xargs) && \
-    bun test
+    if [ -f /run/secrets/env ]; then \
+        export $(grep -v '^#' /run/secrets/env | xargs) && \
+        bun test; \
+    else \
+        echo "Skipping tests: --secret not provided"; \
+    fi
 RUN bun run build
 
 # copy production dependencies and source code into final image

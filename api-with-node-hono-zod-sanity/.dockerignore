@@ -10,3 +10,6 @@ README.md
 .editorconfig
 CLAUDE.md
 CODEX.md
+
+# Build artifacts
+dist/
